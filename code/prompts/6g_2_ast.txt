@@ -1,0 +1,12 @@
+Flat editorial illustration, landscape 3:2. Warm off-white paper background (#F5F0E6). Limited palette: deep navy (#1F2A44) linework and fills, soft warm greys, and ONE accent colour, orange (#E8742A). Clean vector shapes, no gradients, no 3D, no shadows, generous whitespace.
+
+Lower half: a small plaza seen from above at an angle. A young person stands in the middle. Around them: a dog, a fountain, a bicycle, a pigeon, a food stall, a phone on a bench. From the person's head, dozens of very thin, tangled, wobbly navy lines of different thickness reach out to ALL of these objects at once, crossing and knotting like a messy ball of wire; a few of the lines toward the dog are slightly thicker and orange. This tangle must look complicated and hard to read.
+
+Upper half: a large thought bubble rises from the person's head. Inside the bubble is a clean, simple video-game style MINIMAP: a rounded square panel with a thin border, the same plaza drawn as a few flat simple shapes (a circle for the fountain, a small square for the stall). The person is a single orange dot with ONE clean, solid orange fan-shaped cone pointing at a small dog icon. Next to that cone, a tiny label reads exactly: "ME". A second grey dot on the minimap (another person standing near the stall in the plaza below) has its own clean grey fan-shaped cone pointing at the bicycle, labelled exactly: "HER".
+
+Also draw that second person in the plaza below, near the stall, looking at the bicycle.
+
+The contrast must be obvious: below, a messy tangle of real lines; above, inside the head, a neat simplified cone on a minimap.
+
+Text allowed in the image: only "ME" and "HER". No other words, no titles, no watermark.
+Avoid: realistic shading, extra text, blurry labels.

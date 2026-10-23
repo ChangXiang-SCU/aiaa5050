@@ -1,0 +1,16 @@
+Flat editorial illustration, landscape 3:2. Warm off-white paper background (#F5F0E6). Limited palette: deep navy (#1F2A44) linework and fills, soft warm greys, and ONE accent colour, orange (#E8742A). Clean vector shapes, no gradients, no 3D, no shadows, generous whitespace.
+
+Main element: three long horizontal translucent tubes stacked one above another across the image, each tube built from a neat lattice of small round beads (like a hollow cylinder made of beads), drawn in navy outline.
+
+Left two-thirds of each tube: inside, a row of coins spinning on their edge. Each coin is drawn as several overlapping translucent ghost copies at different angles at the same time, showing heads and tails simultaneously, blurred and undecided.
+
+Above the tubes: a thin horizontal gauge bar that fills from left to right in orange, reaching a small vertical tick mark labelled exactly "THRESHOLD".
+
+Right third of each tube, exactly under the threshold tick: all the coins in all three tubes have dropped flat at the same instant, each now one single solid coin, and one bright orange flash ring bursts across all three tubes together at that point.
+
+Bottom of the image: a horizontal film strip of 6 frames. Most frames are dark grey; the frames are separated, and each lit frame contains one small orange flash ring, showing that experience comes as a series of separate moments.
+
+Bottom left corner, small: an empty chair with nobody sitting in it, facing the tubes. No eyes, no person, no camera anywhere in the image.
+
+Text allowed in the image: only "THRESHOLD". No other words, no symbols, no formulas, no watermark.
+Avoid: cats, boxes, atoms, extra text, blurry labels.

@@ -1,0 +1,14 @@
+Flat editorial illustration, landscape 3:2. Warm off-white paper background (#F5F0E6). Limited palette: deep navy (#1F2A44) linework and fills, soft warm greys, and ONE accent colour, orange (#E8742A). Clean vector shapes, no gradients, no 3D, no shadows, generous whitespace.
+
+Scene: a city sidewalk seen from the side. Two IDENTICAL small boxy trash-sorting robots stand side by side on wheels, each with one arm, each dropping the same clear plastic bottle into the same blue recycling bin. Both bins show the same small green checkmark: both robots do the job equally well.
+
+Each robot has a small square screen on its chest that shows what its camera sees: a tiny picture of the bottle.
+
+RIGHT robot: its chest screen glows orange. Floating just above and behind its head is a second, smaller, translucent orange robot figure, like a little supervisor. This small figure is NOT looking at the bottle in the world. It leans down and looks at the right robot's OWN chest screen, with a clear dotted orange line of sight going from its eye to the chest screen. It holds up a small white card that reads exactly: "I AM SEEING A BOTTLE".
+
+LEFT robot: its chest screen shows the same bottle picture, but greyed out and dim. Above its head there is only an empty dashed grey outline where a small supervisor figure could be, and nobody is there. No line of sight, no card.
+
+The two robots must look identical in body, pose and result; the ONLY difference is the small figure watching the robot's own screen and the glow.
+
+Text allowed in the image: only "I AM SEEING A BOTTLE". No other words, no titles, no labels, no watermark.
+Avoid: extra robots, people, speech bubbles, arrows other than the dotted line of sight, blurry text.

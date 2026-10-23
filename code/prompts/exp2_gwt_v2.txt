@@ -1,0 +1,16 @@
+A flat vector technical poster, wide landscape, infographic-diagram style. Deep navy background. Palette strictly limited to three colours: dim desaturated slate grey-blue, one warm amber accent, one cool cyan accent. Crisp geometric flat vector, thin uniform strokes, generous negative space. No 3D, no drop shadows, no gradients, no photorealism, no human faces, no watermark.
+
+Layout is three zones, left to right, clearly separated.
+
+LEFT ZONE: six identical rounded-square agent cards arranged in a vertical column, all rendered DIM and desaturated grey-blue. Each card has a small raised-hand icon at its top-right corner and a grey EMPTY speech bubble floating beside it. One short uppercase label under each card, top to bottom in this order: VISION, SOUND, PAIN, MEMORY, EMOTION, PLANNING. A small caption above this zone reading exactly: ALL COMPUTE. ALL RAISE A HAND.
+
+CENTER ZONE: one solid vertical grey wall with exactly ONE narrow open slot glowing amber. Six thin grey lines run from the six agent cards toward this wall. FIVE of the lines stop dead at the wall and fade out, with no arrowheads. Only ONE line passes through the slot and turns bright amber, ending in a single amber arrowhead pointing right. A vertical label beside the wall reading exactly: ONE SPEAKER PER TURN. A small chip below the wall reading exactly: 1 / 6.
+
+RIGHT ZONE: one tall bright panel with a header bar reading exactly: SHARED LOG. Inside the panel, a single glowing amber message line.
+
+RETURN PATH: six cyan curves start at the right edge of the SHARED LOG panel, sweep in a wide arc around the bottom of the whole poster, and travel back to the six agent cards on the far left. Direction of flow is strictly from the SHARED LOG to the agent cards. Each curve carries exactly ONE arrowhead, and that arrowhead is at the agent-card end only, pointing into the card. There must be NO arrowhead anywhere near the SHARED LOG panel and no double-headed arrows. Each of the six cards displays the SAME small amber line on its face. A caption under the arc reading exactly: EVERY AGENT READS IT NEXT TURN.
+
+BOTTOM: one centered uppercase strip reading exactly: COMPETE, ONE CHANNEL, BROADCAST TO ALL.
+
+All text in clean sans-serif, perfectly legible, correctly spelled, never overlapping any line or icon.
+Avoid: double-headed arrows, arrowheads pointing back toward the SHARED LOG, garbled letters, misspelled words, duplicated labels, extra icons, decorative clutter, neon bloom.

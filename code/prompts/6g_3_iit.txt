@@ -1,0 +1,10 @@
+Flat editorial illustration, landscape 3:2. Warm off-white paper background (#F5F0E6). Limited palette: deep navy (#1F2A44) linework and fills, soft warm greys, warm wood beige, and ONE accent colour, orange (#E8742A). Clean vector shapes, no gradients, no 3D render look, no shadows, generous whitespace.
+
+Two panels side by side, separated by a thin vertical line.
+
+LEFT panel: a flat pegboard holding a neat 6 by 6 grid of 36 tiny separate light bulbs, each one either lit (orange) or unlit (grey), in a random pattern, with no wires between them. A pair of scissors has cut the pegboard into four separate pieces along a dashed line; the pieces are slightly pulled apart, and every bulb on every piece keeps exactly the same lit or unlit state as before. Small caption under the panel reads exactly: "CUT: NOTHING LOST".
+
+RIGHT panel: a large traditional Chinese wooden interlocking burr puzzle (Luban lock): six notched square wooden sticks interlocked through each other in a 3D cross knot, drawn in flat style. The wood glows softly orange from inside, and fine orange threads run from every stick to every other stick, showing that each piece holds all the others. A dashed cut line with a pair of scissors runs through the middle of the puzzle; on the far side of the cut line, the sticks are already sliding apart and their glow and threads have gone completely dark grey. Small caption under the panel reads exactly: "CUT: EVERYTHING LOST".
+
+Text allowed in the image: only the two captions. No other words, no symbols, no formulas, no Greek letters, no watermark.
+Avoid: extra objects, people, blurry text.
