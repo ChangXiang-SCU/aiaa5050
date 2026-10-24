@@ -78,6 +78,8 @@ li{margin:3px 0}
 .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
 .meta .num{font-weight:700;color:var(--accent-ink);font-size:15px;margin-right:4px}
 .chip{font-size:13px;color:var(--muted);background:var(--sunken);border-radius:999px;padding:2px 10px;line-height:1.7}
+.chip.code{background:var(--ink);color:var(--bg);font-weight:600}
+.chip.code.na{background:var(--sunken);color:var(--muted);font-weight:400}
 .chip.warn{background:var(--accent-soft);color:var(--accent-ink)}
 .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin:18px 0 14px}
 @media (max-width:720px){.cols{grid-template-columns:1fr}}
@@ -142,7 +144,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 </head>
 <body>
 <nav class="top" aria-label="目录"><div class="wrap">
-  <a href="#basics">须知</a><a href="#overview">一览</a><a href="#e1">①</a><a href="#e2">②</a><a href="#e3">③</a><a href="#e4">④</a><a href="#e4b">④B</a><a href="#m06">模块 06</a><a href="#e6b">⑥B</a><a href="#e6d">⑥D</a><a href="#e6g">⑥G</a><a href="#ls">10/23</a><a href="#tips">通用的坑</a><a href="#code">代码</a>
+  <a href="#basics">须知</a><a href="#overview">一览</a><a href="#codes">出勤码</a><a href="#e1">①</a><a href="#e2">②</a><a href="#e3">③</a><a href="#e4">④</a><a href="#e4b">④B</a><a href="#m06">模块 06</a><a href="#e6b">⑥B</a><a href="#e6d">⑥D</a><a href="#e6g">⑥G</a><a href="#ls">10/23</a><a href="#tips">通用的坑</a><a href="#code">代码</a>
 </div></nav>
 
 <main class="wrap">
@@ -159,7 +161,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
     <li><b>上课</b>周五 15:00–17:50，岳玉涛老师。录播在 Canvas 公告「Course Recordings」里。</li>
     <li><b>材料在哪</b>Canvas 课程的 Files：课件和 Experiment PDF。有些实验只在课上 slide 或群里的网页里，记得拍 slide。</li>
     <li><b>交在哪</b>Canvas 上目前没有 assignment。按每个实验 slide 的要求，自己留档或发群。</li>
-    <li><b>Session code</b>老师每节课口头报一串数字，证明你在场。当场记下，写进当次的交付件。这页不放 code。</li>
+    <li><b>出勤码 Session code</b>老师每节课口头报一串数字，证明你在场，要写进当次的交付件。各次的码见下面的<a href="#codes">出勤码表</a>，每个实验标题旁也标了。</li>
     <li><b>开新对话、关记忆</b>多数实验要求用 AI 前新开对话、先关记忆，并记下模型名称和版本。</li>
   </ul>
 </section>
@@ -179,6 +181,22 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
   </div>
 </section>
 
+<section id="codes">
+  <p class="sec-title">出勤码</p>
+  <div class="tbl"><table>
+    <tr><th>课</th><th>实验</th><th class="n">出勤码</th></tr>
+    <tr><td>9/4</td><td><a href="#e1">① 意识是什么？</a></td><td class="n"><b>1956</b></td></tr>
+    <tr><td>9/11</td><td><a href="#e2">② 让 GWT 被看见</a></td><td class="n"><b>9527</b></td></tr>
+    <tr><td>9/18</td><td><a href="#e3">③ 没看见，却知道</a></td><td class="n"><b>2000</b><br><span class="small">听说的，未确认</span></td></tr>
+    <tr><td>10/9</td><td><a href="#e4">④ 设计你的图灵测试</a>、<a href="#e4b">④B 中文屋</a></td><td class="n"><b>4.2</b></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6b">⑥B 找不同</a></td><td class="n"><b>2888</b></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6d">⑥D 找错字</a></td><td class="n"><span class="small">未记录</span></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6g">⑥G 让另外五家理论被看见</a></td><td class="n"><b>93000000000</b><br><span class="small">待核对</span></td></tr>
+    <tr><td>10/23</td><td><a href="#ls">Living Structure + AI</a></td><td class="n"><span class="small">未记录</span></td></tr>
+  </table></div>
+  <p class="small">标了“未确认 / 待核对 / 未记录”的，谁记得准确的码，群里说一声我更新。</p>
+</section>
+
 <section id="thread">
   <div class="thread">
     <p class="sec-title" style="margin-bottom:8px">课程主线：老师的工作定义</p>
@@ -195,7 +213,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ① -->
 <section class="exp" id="e1">
-  <div class="meta"><span class="num">Experiment ①</span><span class="chip">9/4 · 第 1 周</span><span class="chip">个人</span><span class="chip">Canvas：Experiment 01 PDF</span></div>
+  <div class="meta"><span class="num">Experiment ①</span><span class="chip code">出勤码 1956</span><span class="chip">9/4 · 第 1 周</span><span class="chip">个人</span><span class="chip">Canvas：Experiment 01 PDF</span></div>
   <h2>意识是什么？<span class="en">What is consciousness?</span></h2>
   <p class="what">第一节课的热身。先不用 AI，写下你自己认为意识是什么；再去问大模型，和它来回讨论，最后得出一个你自己的定义。</p>
   <div class="cols">
@@ -221,7 +239,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ② -->
 <section class="exp" id="e2">
-  <div class="meta"><span class="num">Experiment ②</span><span class="chip">9/11 · 第 2 周</span><span class="chip">20 分钟</span><span class="chip">个人或两人</span><span class="chip">工具不限</span><span class="chip">模块 06 里编号 ⑥C</span></div>
+  <div class="meta"><span class="num">Experiment ②</span><span class="chip code">出勤码 9527</span><span class="chip">9/11 · 第 2 周</span><span class="chip">20 分钟</span><span class="chip">个人或两人</span><span class="chip">工具不限</span><span class="chip">模块 06 里编号 ⑥C</span></div>
   <h2>让 GWT 被看见<span class="en">Make GWT Visible</span></h2>
   <p class="what">全局工作空间理论（GWT）说：大脑里很多模块同时在处理信息、互相竞争，只有一条能挤进“工作空间”，再被广播给所有模块，这条就是你意识到的东西。这个实验要你把这个过程画成一张图，再看 AI 能不能认出画的是 GWT。</p>
   <div class="cols">
@@ -261,7 +279,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ③ -->
 <section class="exp" id="e3">
-  <div class="meta"><span class="num">Experiment ③</span><span class="chip">9/18 · 第 3 周</span><span class="chip">个人</span><span class="chip">Canvas Files 里的网页</span><span class="chip">模块 06 里编号 ⑥A</span></div>
+  <div class="meta"><span class="num">Experiment ③</span><span class="chip code">出勤码 2000（未确认）</span><span class="chip">9/18 · 第 3 周</span><span class="chip">个人</span><span class="chip">Canvas Files 里的网页</span><span class="chip">模块 06 里编号 ⑥A</span></div>
   <h2>没看见，却知道<span class="en">Seeing without Seeing</span></h2>
   <p class="what">测“无意识知觉”：箭头闪得太快，你会说没看见；但如果你猜方向的正确率明显高于瞎猜，就说明大脑处理了你没意识到的信息（类似盲视）。</p>
   <div class="cols">
@@ -284,7 +302,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ④ -->
 <section class="exp" id="e4">
-  <div class="meta"><span class="num">Experiment ④</span><span class="chip">10/9 · 第 4 周</span><span class="chip">30 分钟</span><span class="chip">Canvas：Experiment 04 PDF</span><span class="chip warn">Task 3 禁止用 AI</span></div>
+  <div class="meta"><span class="num">Experiment ④</span><span class="chip code">出勤码 4.2</span><span class="chip">10/9 · 第 4 周</span><span class="chip">30 分钟</span><span class="chip">Canvas：Experiment 04 PDF</span><span class="chip warn">Task 3 禁止用 AI</span></div>
   <h2>设计你的图灵测试<span class="en">The Turing Test Design</span></h2>
   <p class="what">图灵测试：评委隔着文字同时和一个人、一台机器聊天，分不出谁是机器，机器就算通过。这次要你自己设计一套用来测今天大模型的图灵测试，并试跑一下。</p>
   <div class="cols">
@@ -317,7 +335,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ④B -->
 <section class="exp" id="e4b">
-  <div class="meta"><span class="num">Experiment ④B</span><span class="chip">10/9 · 第 4 周</span><span class="chip">25 分钟</span><span class="chip">个人 · 任一大模型</span><span class="chip">只在课上 slide</span></div>
+  <div class="meta"><span class="num">Experiment ④B</span><span class="chip code">出勤码 4.2</span><span class="chip">10/9 · 第 4 周</span><span class="chip">25 分钟</span><span class="chip">个人 · 任一大模型</span><span class="chip">只在课上 slide</span></div>
   <h2>中文屋，你来当<span class="en">Be the Chinese Room</span></h2>
   <p class="what">塞尔的思想实验：一个不懂中文的人关在屋里，照着规则书回中文纸条，门外的人以为他懂中文。这次换成泰文，由你来当屋里那个人，体会“照规则回得对”和“真的懂”差在哪。</p>
   <div class="cols">
@@ -373,7 +391,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ⑥B -->
 <section class="exp" id="e6b">
-  <div class="meta"><span class="num">Experiment ⑥B</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06B_找不同_Change-Blindness.html（群里发的）</span></div>
+  <div class="meta"><span class="num">Experiment ⑥B</span><span class="chip code">出勤码 2888</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06B_找不同_Change-Blindness.html（群里发的）</span></div>
   <h2>找不同<span class="en">Spot the Change</span></h2>
   <p class="what">“变化盲视”：两张几乎一样的图之间插一下灰屏，人就很难发现哪里变了。你和 AI 比赛找不同，看各自的用时被什么拖慢。</p>
   <div class="cols">
@@ -406,7 +424,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ⑥D -->
 <section class="exp" id="e6d">
-  <div class="meta"><span class="num">Experiment ⑥D</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06D_找错字_Proofreading.html（群里发的）</span></div>
+  <div class="meta"><span class="num">Experiment ⑥D</span><span class="chip code na">出勤码 未记录</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06D_找错字_Proofreading.html（群里发的）</span></div>
   <h2>找错字<span class="en">The Proofreading Race</span></h2>
   <p class="what">人读字时，大脑会按自己的预期“脑补”，很多错字读过去也发现不了（对应预测加工理论）。你和 AI 比赛找错字。</p>
   <div class="cols">
@@ -422,7 +440,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- ⑥G -->
 <section class="exp" id="e6g">
-  <div class="meta"><span class="num">Experiment ⑥G</span><span class="chip">模块 06</span><span class="chip">40 分钟</span><span class="chip">个人 · 工具不限</span><span class="chip">课上 slide</span></div>
+  <div class="meta"><span class="num">Experiment ⑥G</span><span class="chip code">出勤码 93000000000（待核对）</span><span class="chip">模块 06</span><span class="chip">40 分钟</span><span class="chip">个人 · 工具不限</span><span class="chip">课上 slide</span></div>
   <h2>让另外五家理论被看见<span class="en">Make the Other Five Theories Visible</span></h2>
   <p class="what">接着 ②：把另外五个意识理论，高阶理论 HOT、注意图式 AST、整合信息 IIT、预测加工 PP、量子意识 Orch-OR，各画成一张图，打乱后让 AI 盲猜每张是哪个理论。</p>
   <div class="cols">
@@ -468,7 +486,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 
 <!-- 10/23 -->
 <section class="exp" id="ls">
-  <div class="meta"><span class="num">10/23 客座</span><span class="chip">江斌教授</span><span class="chip">3–5 人一组</span><span class="chip">材料：练习手册 PDF（Canvas Files）+ 线稿教程</span></div>
+  <div class="meta"><span class="num">10/23 客座</span><span class="chip code na">出勤码 未记录</span><span class="chip">江斌教授</span><span class="chip">3–5 人一组</span><span class="chip">材料：练习手册 PDF（Canvas Files）+ 线稿教程</span></div>
   <h2>机器没体验过美，也能认出美吗？<span class="en">Living Structure + AI: Four Hands-On Exercises</span></h2>
   <p class="what">江斌教授的“活的结构”理论认为，美可以用结构来量：子结构越多、层次越深，越“有生命”。小组用四种方法给一对建筑打分，再讨论：机器没体验过美，能不能认出美。</p>
   <div class="cols">
