@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIAA 5050 实验整理</title>
+<meta name="description" content="AIAA 5050 Machine Consciousness 课上实验：要求、交付物、做法、代码和提示词。">
+<style>
+:root{
+  --bg:#F6F3ED; --surface:#FFFFFF; --sunken:#EFEAE1; --ink:#1F2A44; --muted:#5C6678; --line:#E2DBCF;
+  --accent:#D9651F; --accent-ink:#B4520F; --accent-soft:#FBEADC; --ok:#2F7D5B;
+  --code-bg:#1F2A44; --code-ink:#E8ECF4; --shadow:0 1px 2px rgba(31,42,68,.06),0 4px 16px rgba(31,42,68,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161D; --surface:#1A2029; --sunken:#151A22; --ink:#E7E5E0; --muted:#9BA4B3; --line:#2A323F;
+    --accent:#F08C4B; --accent-ink:#F5A673; --accent-soft:#33251B; --ok:#5FBF92;
+    --code-bg:#0D1117; --code-ink:#E2E6EE; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161D; --surface:#1A2029; --sunken:#151A22; --ink:#E7E5E0; --muted:#9BA4B3; --line:#2A323F;
+  --accent:#F08C4B; --accent-ink:#F5A673; --accent-soft:#33251B; --ok:#5FBF92;
+  --code-bg:#0D1117; --code-ink:#E2E6EE; --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+code,pre,.mono{font-family:"SFMono-Regular",Consolas,"Cascadia Mono",Menlo,"Microsoft YaHei",monospace}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+/* nav */
+nav.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:10px;padding-bottom:10px}
+nav.top .wrap::-webkit-scrollbar{display:none}
+nav.top a{flex:none;font-size:14px;color:var(--muted);padding:4px 10px;border-radius:999px;white-space:nowrap}
+nav.top a:hover{background:var(--sunken);color:var(--ink);text-decoration:none}
+nav.top a.on{background:var(--ink);color:var(--bg)}
+/* hero */
+header.hero{padding:56px 0 28px}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--muted);margin:0 0 10px;text-transform:uppercase}
+h1{font-size:clamp(30px,6vw,44px);line-height:1.2;margin:0 0 14px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--muted);margin:0 0 14px;max-width:40em}
+.note{display:inline-block;font-size:14px;color:var(--muted);background:var(--sunken);border-radius:8px;padding:6px 12px;margin:0}
+/* sections */
+section{padding:28px 0}
+h2{font-size:26px;line-height:1.3;margin:0 0 6px}
+h2 .en{display:block;font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:2px}
+h3{font-size:15px;margin:0 0 8px;color:var(--ink);letter-spacing:.02em}
+.sec-title{font-size:13px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin:0 0 14px;font-weight:600}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:1.3em}
+li{margin:3px 0}
+.facts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));list-style:none;padding:0}
+.facts li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0;font-size:15px;line-height:1.65}
+.facts b{display:block;margin-bottom:2px}
+/* overview */
+.grid-ov{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.ov{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s}
+.ov:hover{border-color:var(--accent);text-decoration:none}
+.badge{flex:none;min-width:40px;height:40px;padding:0 6px;border-radius:10px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:16px}
+.ov .t{display:block;font-weight:600;line-height:1.4}
+.ov .s{display:block;font-size:14px;color:var(--ink);line-height:1.55;margin-top:3px}
+.ov .s2{display:block;font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:4px}
+/* thread */
+.thread{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.pillar{background:var(--sunken);border-radius:10px;padding:10px 12px}
+.pillar b{display:block;font-size:17px}
+.pillar span{font-size:13px;color:var(--muted)}
+@media (max-width:560px){.pillars{grid-template-columns:repeat(2,1fr)}}
+/* experiment */
+.exp{border-top:1px solid var(--line);padding:40px 0 28px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.meta .num{font-weight:700;color:var(--accent-ink);font-size:15px;margin-right:4px}
+.chip{font-size:13px;color:var(--muted);background:var(--sunken);border-radius:999px;padding:2px 10px;line-height:1.7}
+.chip.code{background:var(--ink);color:var(--bg);font-weight:600}
+.chip.code.na{background:var(--sunken);color:var(--muted);font-weight:400}
+.chip.warn{background:var(--accent-soft);color:var(--accent-ink)}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin:18px 0 14px}
+@media (max-width:720px){.cols{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.card > :last-child{margin-bottom:0}
+.card ul.check{list-style:none;padding:0}
+.card ul.check li{position:relative;padding-left:24px}
+.card ul.check li::before{content:"";position:absolute;left:2px;top:.52em;width:12px;height:12px;border:1.5px solid var(--accent);border-radius:3px}
+.small{font-size:14px;color:var(--muted)}
+details.mine{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:12px 0;box-shadow:var(--shadow)}
+details.mine > summary{cursor:pointer;padding:12px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.mine > summary::-webkit-details-marker{display:none}
+details.mine > summary::after{content:"展开";font-weight:400;font-size:14px;color:var(--muted)}
+details.mine[open] > summary::after{content:"收起"}
+details.mine .in{padding:2px 18px 16px}
+.pit{background:var(--accent-soft);border-radius:12px;padding:14px 18px;margin:12px 0}
+.pit h3{color:var(--accent-ink)}
+.pit ul{margin-bottom:0}
+.uses{font-size:14px;color:var(--muted);margin-top:10px}
+.uses a{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px;background:var(--sunken);padding:1px 7px;border-radius:6px;margin:0 2px;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 12px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:13px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl{overflow-x:auto;margin:0 -2px}
+figure{margin:14px 0}
+figure img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--sunken)}
+figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0 16px}
+.gallery figure{margin:0}
+blockquote{margin:8px 0 12px;padding:2px 0 2px 14px;border-left:3px solid var(--line);color:var(--muted)}
+.what{font-size:16px;line-height:1.8;margin:12px 0 4px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.kicker{font-size:15px;color:var(--muted);margin:12px 0 10px}
+/* code */
+.files{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+.files > *,.cols > *,.grid-ov > *,.gallery > *{min-width:0}
+pre{max-width:100%}
+.file{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);scroll-margin-top:70px}
+.file:target{border-color:var(--accent)}
+.fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 16px}
+.fh .fn{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-weight:600;font-size:15px}
+.fh .for{font-size:13px;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:1px 9px}
+.fh .desc{flex:1 1 260px;font-size:14px;color:var(--muted);margin:0}
+.btns{display:flex;gap:6px;margin-left:auto}
+button{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:4px 12px;min-height:32px}
+button:hover{border-color:var(--accent);color:var(--accent-ink)}
+.file details summary{cursor:pointer;font-size:13px;color:var(--muted);padding:0 16px 12px;list-style:none}
+.file details summary::-webkit-details-marker{display:none}
+.file details[open] summary{padding-bottom:8px}
+pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px 16px;border-radius:0 0 12px 12px;overflow-x:auto;font-size:13px;line-height:1.6;tab-size:4}
+footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:480px){
+  .wrap{padding:0 16px}
+  header.hero{padding:36px 0 20px}
+  h2{font-size:22px}
+  .card,.thread{padding:14px 15px}
+  .btns{margin-left:0}
+}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="目录"><div class="wrap">
+  <a href="#basics">须知</a><a href="#overview">一览</a><a href="#codes">出勤码</a><a href="#e1">①</a><a href="#e2">②</a><a href="#e3">③</a><a href="#e4">④</a><a href="#e4b">④B</a><a href="#m06">模块 06</a><a href="#e6b">⑥B</a><a href="#e6d">⑥D</a><a href="#e6g">⑥G</a><a href="#ls">10/23</a><a href="#tips">通用的坑</a><a href="#code">代码</a>
+</div></nav>
+
+<main class="wrap">
+<header class="hero">
+  <p class="eyebrow">AIAA 5050 · Machine Consciousness · 2026 秋</p>
+  <h1>课上实验，一页看全</h1>
+  <p class="lede">每个实验要做什么、交什么、怎么做顺手，加上能直接拿去用的代码和提示词。<span style="white-space:nowrap">最后更新 {{UPDATED}}。</span></p>
+  <p class="note">个人整理，不是官方材料。要求以老师的 slide 和 Canvas 为准。</p>
+</header>
+
+<section id="basics">
+  <p class="sec-title">先知道这几件事</p>
+  <ul class="facts">
+    <li><b>上课</b>周五 15:00–17:50，岳玉涛老师。录播在 Canvas 公告「Course Recordings」里。</li>
+    <li><b>材料在哪</b>Canvas 课程的 Files：课件和 Experiment PDF。有些实验只在课上 slide 或群里的网页里，记得拍 slide。</li>
+    <li><b>交在哪</b>Canvas 上目前没有 assignment。按每个实验 slide 的要求，自己留档或发群。</li>
+    <li><b>出勤码 Session code</b>老师每节课口头报一串数字，证明你在场，要写进当次的交付件。各次的码见下面的<a href="#codes">出勤码表</a>，每个实验标题旁也标了。</li>
+    <li><b>开新对话、关记忆</b>多数实验要求用 AI 前新开对话、先关记忆，并记下模型名称和版本。</li>
+  </ul>
+</section>
+
+<section id="overview">
+  <p class="sec-title">一览</p>
+  <div class="grid-ov">
+    <a class="ov" href="#e1"><span class="badge">①</span><span><span class="t">意识是什么？</span><span class="s">先自己写，再问 AI，讨论出你自己的“意识”定义</span><span class="s2">9/4 · 个人 · 三步，先不用 AI</span></span></a>
+    <a class="ov" href="#e2"><span class="badge">②</span><span><span class="t">让 GWT 被看见</span><span class="s">把全局工作空间理论画成一张图，让 AI 盲猜是哪个理论</span><span class="s2">9/11 · 20 分钟 · 一张图 + 盲测 · 即 ⑥C</span></span></a>
+    <a class="ov" href="#e3"><span class="badge">③</span><span><span class="t">没看见，却知道</span><span class="s">箭头一闪而过，说没看见，还能猜对方向吗？测无意识知觉</span><span class="s2">9/18 · 网页 40 题 · 即 ⑥A</span></span></a>
+    <a class="ov" href="#e4"><span class="badge">④</span><span><span class="t">设计你的图灵测试</span><span class="s">自己设计一套测今天大模型的图灵测试并试跑，反思自己写</span><span class="s2">10/9 · 30 分钟 · Task 3 禁用 AI</span></span></a>
+    <a class="ov" href="#e4b"><span class="badge">④B</span><span><span class="t">中文屋，你来当</span><span class="s">照着看不懂的泰文规则书和 AI 聊天，体会“回得对”不等于“懂”</span><span class="s2">10/9 · 25 分钟 · 泰文规则书</span></span></a>
+    <a class="ov" href="#e6b"><span class="badge">⑥B</span><span><span class="t">找不同</span><span class="s">两张图中间闪一下灰屏，你和 AI 比赛找出哪里变了</span><span class="s2">模块 06 · 网页 10 轮 · 人 vs AI 计时</span></span></a>
+    <a class="ov" href="#e6d"><span class="badge">⑥D</span><span><span class="t">找错字</span><span class="s">限时找出文章里的错字，和 AI 比谁找得全、找得快</span><span class="s2">模块 06 · 网页 4 段 · 人 vs AI</span></span></a>
+    <a class="ov" href="#e6g"><span class="badge">⑥G</span><span><span class="t">让另外五家理论被看见</span><span class="s">把另外五个意识理论各画成一张图，打乱后让 AI 盲猜</span><span class="s2">模块 06 · 40 分钟 · 五张图 + 盲测</span></span></a>
+    <a class="ov" href="#ls"><span class="badge">10/23</span><span><span class="t">Living Structure + AI</span><span class="s">小组用四种方法给一对建筑的“美”打分，讨论机器能不能认出美</span><span class="s2">江斌教授客座 · 3–5 人小组 · 四种方法</span></span></a>
+  </div>
+</section>
+
+<section id="codes">
+  <p class="sec-title">出勤码</p>
+  <div class="tbl"><table>
+    <tr><th>课</th><th>实验</th><th class="n">出勤码</th></tr>
+    <tr><td>9/4</td><td><a href="#e1">① 意识是什么？</a></td><td class="n"><b>1956</b></td></tr>
+    <tr><td>9/11</td><td><a href="#e2">② 让 GWT 被看见</a></td><td class="n"><b>9527</b></td></tr>
+    <tr><td>9/18</td><td><a href="#e3">③ 没看见，却知道</a></td><td class="n"><b>2000</b><br><span class="small">听说的，未确认</span></td></tr>
+    <tr><td>10/9</td><td><a href="#e4">④ 设计你的图灵测试</a>、<a href="#e4b">④B 中文屋</a></td><td class="n"><b>4.2</b></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6b">⑥B 找不同</a></td><td class="n"><b>2888</b></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6d">⑥D 找错字</a></td><td class="n"><span class="small">未记录</span></td></tr>
+    <tr><td>模块 06</td><td><a href="#e6g">⑥G 让另外五家理论被看见</a></td><td class="n"><b>93000000000</b><br><span class="small">待核对</span></td></tr>
+    <tr><td>10/23</td><td><a href="#ls">Living Structure + AI</a></td><td class="n"><span class="small">未记录</span></td></tr>
+  </table></div>
+  <p class="small">标了“未确认 / 待核对 / 未记录”的，谁记得准确的码，群里说一声我更新。</p>
+</section>
+
+<section id="thread">
+  <div class="thread">
+    <p class="sec-title" style="margin-bottom:8px">课程主线：老师的工作定义</p>
+    <p style="margin:0">有觉知、有自我、能自己做主、后果落在自己身上，这样的系统就是有意识。觉知是底座，缺一条就不算。智能是另一回事，说的是事情做得多好。</p>
+    <div class="pillars">
+      <div class="pillar"><b>觉知</b><span>Awareness</span></div>
+      <div class="pillar"><b>自我</b><span>Self</span></div>
+      <div class="pillar"><b>意志</b><span>Volition</span></div>
+      <div class="pillar"><b>利害</b><span>Stake</span></div>
+    </div>
+    <p class="small" style="margin:0">用这四条看今天的 AI：大模型觉知广而不久，自我只有浅浅一层，意志和利害都没有。很多实验的讨论题最后都能落到这四条上。（第 2 周课件第 44–47 页）</p>
+  </div>
+</section>
+
+<!-- ① -->
+<section class="exp" id="e1">
+  <div class="meta"><span class="num">Experiment ①</span><span class="chip code">出勤码 1956</span><span class="chip">9/4 · 第 1 周</span><span class="chip">个人</span><span class="chip">Canvas：Experiment 01 PDF</span></div>
+  <h2>意识是什么？<span class="en">What is consciousness?</span></h2>
+  <p class="what">第一节课的热身。先不用 AI，写下你自己认为意识是什么；再去问大模型，和它来回讨论，最后得出一个你自己的定义。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li><b>先别用 AI</b>：自己写几个关键词、几句话，说你认为意识是什么。</li>
+        <li>任选一个大模型，问它怎么定义意识，原样记下回答。</li>
+        <li>接着和它讨论，得出你自己的最终定义，也记下来。</li>
+      </ol></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check"><li>一份自己的文档，三步都在里面</li></ul>
+      <p class="small">slide 原话是 “Keep it somewhere so it can later be retrieved”，是留档，后面的课还会用到。</p></div>
+  </div>
+  <details class="mine" open><summary>我的做法和结果（仅供参考）</summary><div class="in">
+    <p>问了两个模型（Claude、Gemini）放在一起比。两家引的理论一样，定义却往相反方向走：一个定义“让体验成为可能的结构”，可以拿到 AI 上检验；另一个直接定义“体验本身”（qualia），从外面没法验证。这个分歧比任何一个答案都更有信息量。</p>
+    <p>我的最终定义：意识是系统持续维持的、整合的内部世界模型，它 (a) 包含“自己作为主体”这一项，(b) 全局可用，不局限于某个模块，(c) 能把自身状态再表征一次，(d) 能离线、反事实地运行。另加一条边界条款：这四条是“意识得以可能”所需的结构，不保证有主观体验。</p>
+  </div></details>
+  <div class="pit"><h3>建议</h3><ul>
+    <li>第 1 步写完再碰 AI，不然自己的想法会被它的答案带跑。</li>
+    <li>问两个模型比只问一个更有东西可写，分歧就是现成的讨论点。</li>
+  </ul></div>
+</section>
+
+<!-- ② -->
+<section class="exp" id="e2">
+  <div class="meta"><span class="num">Experiment ②</span><span class="chip code">出勤码 9527</span><span class="chip">9/11 · 第 2 周</span><span class="chip">20 分钟</span><span class="chip">个人或两人</span><span class="chip">工具不限</span><span class="chip">模块 06 里编号 ⑥C</span></div>
+  <h2>让 GWT 被看见<span class="en">Make GWT Visible</span></h2>
+  <p class="what">全局工作空间理论（GWT）说：大脑里很多模块同时在处理信息、互相竞争，只有一条能挤进“工作空间”，再被广播给所有模块，这条就是你意识到的东西。这个实验要你把这个过程画成一张图，再看 AI 能不能认出画的是 GWT。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li>对话弄懂（0–6 分钟）：和任一大模型聊，直到你能用一句话讲清 GWT 的内核。</li>
+        <li>把理解变成 1 张图，或一段 10 秒以内的视频。</li>
+        <li>AI 盲测：新开对话只发作品，问它表达的是哪种意识理论；然后分享。</li>
+      </ol>
+      <p class="small">评判：一眼看出<b>谁在竞争、瓶颈在哪、广播给谁</b>。加分：不用“剧场 + 聚光灯”，自创隐喻。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>作品</li>
+        <li>标题 + 一句话“我理解的 GWT”</li>
+        <li>最终提示词 + 所用工具</li>
+        <li>AI 盲测的回答</li>
+      </ul></div>
+  </div>
+  <details class="mine" open><summary>我的做法和结果（仅供参考）</summary><div class="in">
+    <p><b>隐喻：多智能体群聊里的“举手发言”</b>（AutoGen GroupChat 选下一个发言人）。GWT 本来就是 Baars 从 AI 的 blackboard 架构借去解释大脑的，用多智能体群聊讲它，等于送回出身地。标题《每轮只有一个发言人》。</p>
+    <ul>
+      <li>谁在竞争：左边六个 agent 都算完了、都举着手，气泡是空的。</li>
+      <li>瓶颈在哪：中间一堵墙只有一个口，角标 1 / 6。</li>
+      <li>广播给谁：写进 SHARED LOG 的那条，沿青色箭头回到全部六张卡。</li>
+    </ul>
+    <p>工具：Claude 对话，gpt-image-2 出图（1536×1024）。盲测命中 GWT，把握约 90%，它还说“这里没有剧场，是一条日志和一群读者”。</p>
+    <!--IMG:gwt|《每轮只有一个发言人》，提示词见下方 exp2_gwt_v2.txt-->
+    <p>讨论题“GWT 解释了被广播，那被感受到呢？”我的回答：广播改变的是可用性，没有改变“这条信息对谁有什么后果”。按老师的四条定义，这张图把觉知画满了，利害一格没有。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>第一版回环箭头两头都有，“广播出去”被读成了“汇聚进来”。提示词里要写死箭头只在哪一端。</li>
+    <li>盲测前把文件名改成中性的（比如 piece.png），文件名会直接泄题。</li>
+    <li>提示词里列清楚图里允许出现哪几个词，模型才不乱写字。</li>
+  </ul></div>
+  <p class="uses">相关：<a href="#f-exp2_gwt_v2">exp2_gwt_v2.txt</a><a href="#f-gen_image">gen_image.py</a><a href="#f-blind_test">blind_test.txt</a></p>
+</section>
+
+<!-- ③ -->
+<section class="exp" id="e3">
+  <div class="meta"><span class="num">Experiment ③</span><span class="chip code">出勤码 2000（未确认）</span><span class="chip">9/18 · 第 3 周</span><span class="chip">个人</span><span class="chip">Canvas Files 里的网页</span><span class="chip">模块 06 里编号 ⑥A</span></div>
+  <h2>没看见，却知道<span class="en">Seeing without Seeing</span></h2>
+  <p class="what">测“无意识知觉”：箭头闪得太快，你会说没看见；但如果你猜方向的正确率明显高于瞎猜，就说明大脑处理了你没意识到的信息（类似盲视）。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <p>网页上一个箭头闪一下，随即被乱码盖住。每题先猜方向（四选一，瞎猜是 25%），再按 <b>S</b>（看见了）或 <b>N</b>（没看见）。共 40 题。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>结果行和截图发课程群</li>
+        <li>回答三问：① 按 N 的那些题正确率多少、p 多少；② 做的时候是不是觉得在瞎猜；③ “有没有看见”谁说了算？判断 AI 有没有觉知，是不是同一个难题？</li>
+      </ul></div>
+  </div>
+  <details class="mine" open><summary>我的结果</summary><div class="in">
+    <p>闪现 8.4 ms + 遮罩。40 题全按 N，猜对 7 题（18%，p = 0.904），没测出“没看见却知道”。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>页面会显示实际闪现时长，开始前看一眼。我那次是 8.4 ms，大约是 120 Hz 屏幕的一帧，比设计的约 33 ms 短很多，可能短到连无意识加工都来不及。</li>
+    <li>40 题里至少答对 16 题才 p &lt; 0.05。p 值用 <a href="#f-binom_p">binom_p.py</a> 算，一行命令。</li>
+  </ul></div>
+</section>
+
+<!-- ④ -->
+<section class="exp" id="e4">
+  <div class="meta"><span class="num">Experiment ④</span><span class="chip code">出勤码 4.2</span><span class="chip">10/9 · 第 4 周</span><span class="chip">30 分钟</span><span class="chip">Canvas：Experiment 04 PDF</span><span class="chip warn">Task 3 禁止用 AI</span></div>
+  <h2>设计你的图灵测试<span class="en">The Turing Test Design</span></h2>
+  <p class="what">图灵测试：评委隔着文字同时和一个人、一台机器聊天，分不出谁是机器，机器就算通过。这次要你自己设计一套用来测今天大模型的图灵测试，并试跑一下。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li>Task 1：弄懂图灵测试。</li>
+        <li>Task 2：设计并执行一个测今天大模型的图灵测试方案。</li>
+        <li>Task 3：反思 (a) 意义 (b) 局限。</li>
+      </ol>
+      <p class="small">Task 1、2 可以和 AI 合作；Task 3 自己写。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check"><li>三个 Task 的记录</li></ul></div>
+  </div>
+  <details class="mine" open><summary>我的方案和试跑（仅供参考）</summary><div class="in">
+    <ul>
+      <li><b>三方版为主</b>：评委同时和一个人、一个 AI 聊，最后二选一，瞎猜是 50%。</li>
+      <li><b>证人</b>：2–4 个主流模型（含国产）+ ELIZA 作基线；提示词三档：给人设 / 不给人设 / 默认助手。</li>
+      <li><b>界面</b>参照 Jones &amp; Bergen：每场 5 分钟，单条不超过 300 字，模拟打字延迟。</li>
+      <li><b>三条线</b>：30%（图灵当年的预测）、50%（瞎猜线，二项检验）、真人证人的基线。</li>
+      <li><b>样本量</b>：想检出 65% 显著高于 50%，每个条件约 70 场（<a href="#f-power_n">power_n.py</a>）。</li>
+      <li><b>一致性探针</b>：同一个模型多开几个会话问同样的题，答案太像就露馅。</li>
+    </ul>
+    <p><b>试跑</b>：两个 Claude 会话当证人（有人设 / 无人设），8 道固定探针题，6 个 AI 评委。两种都是 2/3 被判成人。没给人设的那个也自己装人；两个会话答案几乎一样（都选了同一句河南话，心算都答 1081）；评委判 AI 的理由都是“太完美、太贴设定”；心算题没有区分力。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>Task 3 是规则写明禁止用 AI 的，自己写。</li>
+    <li>课上时间只够试跑，评委是 AI、场数很少，报告里把这些局限写清楚。</li>
+  </ul></div>
+</section>
+
+<!-- ④B -->
+<section class="exp" id="e4b">
+  <div class="meta"><span class="num">Experiment ④B</span><span class="chip code">出勤码 4.2</span><span class="chip">10/9 · 第 4 周</span><span class="chip">25 分钟</span><span class="chip">个人 · 任一大模型</span><span class="chip">只在课上 slide</span></div>
+  <h2>中文屋，你来当<span class="en">Be the Chinese Room</span></h2>
+  <p class="what">塞尔的思想实验：一个不懂中文的人关在屋里，照着规则书回中文纸条，门外的人以为他懂中文。这次换成泰文，由你来当屋里那个人，体会“照规则回得对”和“真的懂”差在哪。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li>新开对话（先关记忆），贴老师 slide 上的提示词。</li>
+        <li>AI 给你一本 6 条的泰文规则书：收到什么，就回什么。</li>
+        <li>它用泰文和你聊，你照规则书找一模一样的那条回。<b>每回一句之前</b>，先写下你猜的意思。</li>
+        <li>聊完读它给的中文翻译，和你的猜测对比。</li>
+        <li>自创玩法。</li>
+      </ol>
+      <p class="small">塞尔的问题：只管符号形状，对话照样通顺，这里有没有“懂”？你 + 规则书 + 屋子，合起来算不算懂？</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>规则书截图</li>
+        <li>每句之前的猜测</li>
+        <li>AI 的中文翻译</li>
+        <li>一句话：你懂泰文了吗？谁懂？</li>
+        <li>自创玩法：改了什么，结果如何</li>
+        <li>原始记录（截图或导出，不删不改）</li>
+      </ul>
+      <p class="small">另记 session code、模型名称和版本。</p></div>
+  </div>
+  <details class="mine" open><summary>我的结果和自创玩法（仅供参考）</summary><div class="in">
+    <p><b>主实验</b>：6 句全照规则回对，意思一句没猜对，还在不知情时答应了明天请对方吃榴莲。</p>
+    <p><b>自创玩法：把屋里的人换成 AI。</b></p>
+    <ul>
+      <li>A 版，原样泰文：AI 6/6 回对、6/6 猜对。它本来就懂泰语，不是塞尔设想的屋中人。</li>
+      <li>B 版，把每个泰文字符换成几何符号（<a href="#f-thai_cipher">thai_cipher.py</a>）：AI 第一句就从“第 1、4 位相同，第 3、9 位相同”认出这是 สวัสดีครับ（你好），边聊边破译，还是 6/6。</li>
+    </ul>
+    <p>结论：从门外分不出懂不懂；但 AI 的“懂”来自它本来就会的泰文，不推翻塞尔。想真挡住它，得用现编的语言，或者整词随机换符号。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>猜测必须在回之前当场写下，事后补不了，也别让 AI 替你补，那是你的实验数据。</li>
+  </ul></div>
+  <p class="uses">相关：<a href="#f-thai_cipher">thai_cipher.py</a><a href="#f-room_prompt">room_prompt.txt</a></p>
+</section>
+
+<!-- 模块 06 -->
+<section class="exp" id="m06">
+  <div class="meta"><span class="num">模块 06</span><span class="chip">10/10 补课起</span><span class="chip">Canvas：06_人脑与理论 课件</span></div>
+  <h2>人脑与理论<span class="en">Brain &amp; Theories</span></h2>
+  <p class="kicker">唯一公认有意识的系统是人脑，它里面发生了什么？这一块分三段，实验穿插在里面：</p>
+  <div class="tbl"><table>
+    <tr><th>段落</th><th>内容</th><th>实验</th></tr>
+    <tr><td>① 实验与现象</td><td>错觉热身、人脑的几个事实</td><td><a href="#e3">⑥A 没看见却知道</a>（就是 ③）、<a href="#e6b">⑥B 找不同</a></td></tr>
+    <tr><td>② 四家理论</td><td>双眼竞争 → HOT、GWT、IIT、PP 各说意识是什么</td><td><a href="#e2">⑥C 让 GWT 被看见</a>（就是 ②）、<a href="#e6d">⑥D 找错字</a></td></tr>
+    <tr><td>③ 理论之争</td><td>COGITATE 2025（Nature）：GNW 和 IIT 事先写好“怎样算我错”，再正面对决</td><td></td></tr>
+    <tr><td>课上另加</td><td>把另外五家理论也画出来</td><td><a href="#e6g">⑥G 让另外五家理论被看见</a></td></tr>
+  </table></div>
+  <p class="small">每篇论文 4 页：背景与问题 → 比方与方法 → 关键图 → 发现与要点。如果还有我漏掉的实验，欢迎在群里补。</p>
+</section>
+
+<!-- ⑥B -->
+<section class="exp" id="e6b">
+  <div class="meta"><span class="num">Experiment ⑥B</span><span class="chip code">出勤码 2888</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06B_找不同_Change-Blindness.html（群里发的）</span></div>
+  <h2>找不同<span class="en">Spot the Change</span></h2>
+  <p class="what">“变化盲视”：两张几乎一样的图之间插一下灰屏，人就很难发现哪里变了。你和 AI 比赛找不同，看各自的用时被什么拖慢。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <p>10 轮找不同。前 8 轮两张图之间闪一下灰屏，后 2 轮没有灰屏，当对照。每轮你先找（空格开始，点出变化的位置），再把网页给的同一张左右拼图发给 AI，计时。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>10 轮对比表和平均用时（网页上“复制成绩表”）</li>
+        <li>AI 看错的轮次和它的回答</li>
+        <li>一段话：你和 AI 的用时各被什么拖慢</li>
+        <li>自创玩法</li>
+        <li>原始记录：成绩截图 + 所有对话</li>
+      </ul>
+      <p class="small">另记 session code、模型版本；开对话前关记忆。</p></div>
+  </div>
+  <details class="mine" open><summary>我的自创玩法（仅供参考）</summary><div class="in">
+    <p>网页给 AI 的是左右并排的一张图，AI 一眼同时看到两张，灰屏对它根本不存在。我改成和人一样的顺序：每轮按“图 1 → 灰屏 → 图 2”三张依次发。</p>
+    <div class="tbl"><table>
+      <tr><th>条件</th><th>每轮发给 AI 的</th><th class="n">答对</th><th class="n">10 轮总用时</th></tr>
+      <tr><td>原版</td><td>左右并排 1 张</td><td class="n">10 / 10</td><td class="n">44.5 s</td></tr>
+      <tr><td>分帧 + 灰屏</td><td>图 1 → 灰屏 → 图 2</td><td class="n">10 / 10</td><td class="n">104.5 s</td></tr>
+    </table></div>
+    <p class="small">模型 Claude Opus 5.5，两种条件各开一个新对话。</p>
+    <p>灰屏挡不住 AI：图 1 一直留在对话上下文里，它看图 2 时随时能回看，“工作记忆”是完美的。多花的时间只是多看了两张图。</p>
+  </div></details>
+  <div class="pit"><h3>说明</h3><ul>
+    <li>10 轮的标准答案我有，但不放出来，提前知道这个实验就没法做了。</li>
+  </ul></div>
+</section>
+
+<!-- ⑥D -->
+<section class="exp" id="e6d">
+  <div class="meta"><span class="num">Experiment ⑥D</span><span class="chip code na">出勤码 未记录</span><span class="chip">模块 06</span><span class="chip">个人</span><span class="chip">网页：06D_找错字_Proofreading.html（群里发的）</span></div>
+  <h2>找错字<span class="en">The Proofreading Race</span></h2>
+  <p class="what">人读字时，大脑会按自己的预期“脑补”，很多错字读过去也发现不了（对应预测加工理论）。你和 AI 比赛找错字。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <p>4 段文字（中文 3 段、英文 1 段），每段藏了几处错。限时读，点出错处；再把原文发给新开的 AI 对话，看它找出几处、用多久。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <p class="small">以课上 slide 为准，我没拍到这一页。按其他实验的惯例，至少会要成绩表、AI 的回答和原始记录。</p></div>
+  </div>
+  <details class="mine" open><summary>AI 那一半我的结果</summary><div class="in">
+    <p>4 个全新的 Claude Opus 5.5 会话，每段都全部找出、没有误报，每段用时 7.8–11.1 秒。其中一段 AI 还主动说明“薄薄的”是正常叠词，不算错。</p>
+  </div></details>
+</section>
+
+<!-- ⑥G -->
+<section class="exp" id="e6g">
+  <div class="meta"><span class="num">Experiment ⑥G</span><span class="chip code">出勤码 93000000000（待核对）</span><span class="chip">模块 06</span><span class="chip">40 分钟</span><span class="chip">个人 · 工具不限</span><span class="chip">课上 slide</span></div>
+  <h2>让另外五家理论被看见<span class="en">Make the Other Five Theories Visible</span></h2>
+  <p class="what">接着 ②：把另外五个意识理论，高阶理论 HOT、注意图式 AST、整合信息 IIT、预测加工 PP、量子意识 Orch-OR，各画成一张图，打乱后让 AI 盲猜每张是哪个理论。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li>对话弄懂 HOT、AST、IIT、PP、量子意识（Orch-OR）。</li>
+        <li>每家一张图（或 10 秒以内的视频）。</li>
+        <li>AI 盲测：新开对话，五件打乱一起发，别写理论名。</li>
+        <li>自创玩法。</li>
+      </ol>
+      <p class="small">好作品检验：HOT 谁在看着谁？AST 的简图在哪？IIT 为什么拆不开？PP 猜了什么？量子 哪一刻坍缩？加分：自创隐喻。</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>作品</li>
+        <li>每张的标题 + 一句话</li>
+        <li>最终提示词 + 工具</li>
+        <li>盲测回答（猜对几张）</li>
+        <li>自创玩法</li>
+        <li>原始记录</li>
+      </ul>
+      <p class="small">另记 session code、模型名称版本；新对话前关记忆。</p></div>
+  </div>
+  <details class="mine" open><summary>我的五张图和盲测（仅供参考）</summary><div class="in">
+    <div class="tbl"><table>
+      <tr><th>理论</th><th>标题</th><th>画面</th></tr>
+      <tr><td>HOT</td><td>《做对了，不等于看见了》</td><td>两个一样的分拣机器人都把瓶子投对了，只有一个头上有个小人盯着它自己的胸口屏幕，举牌 “I AM SEEING A BOTTLE”</td></tr>
+      <tr><td>AST</td><td>《脑子里的小地图》</td><td>真实的注意是一团乱线；头里的游戏小地图上只有一个干净的扇形 ME → 狗，旁边还有别人的 HER</td></tr>
+      <tr><td>IIT</td><td>《拆不开的鲁班锁》</td><td>灯泡板剪开：NOTHING LOST；鲁班锁剪开：EVERYTHING LOST</td></tr>
+      <tr><td>PP</td><td>《黑暗里多出来的那一级台阶》</td><td>手电只照脚下一级，其余台阶是脑子投出的虚线，多猜了一级，落脚处一个 “!”</td></tr>
+      <tr><td>Orch-OR</td><td>《没人看，它也会落下》</td><td>微管里的硬币处在叠加态，到 THRESHOLD 同时倒下；胶片代表离散的瞬间；空椅子代表没有观察者</td></tr>
+    </table></div>
+    <!--GALLERY:6g-->
+    <p>统一画风：暖白底、深蓝线条、只用一个橙色强调。出图用 GPT Image（经 Figma 的 generate_image），五张都是第一版。</p>
+    <p><b>盲测</b>（新开 Claude Opus 5.5 会话，文件名 A–E）：<b>5 / 5</b>。把握度 PP 90%、IIT 95%、Orch-OR 85%、HOT 80%、AST 70%。</p>
+    <p><b>自创玩法</b>：把 ② 的 GWT 图也放进去，六张打乱，再换模型。Opus 6/6，说最容易混的是 AST 和 HOT（都在画“系统给自己的内部状态再做一层表征”）；Haiku 5/6，把量子那张认成“阈值点火 / 离散帧”（把握 40%），说最容易混的是 GWT 和量子（都讲阈值）。两个模型混淆的方向不一样；THRESHOLD 这个线索太通用。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>最难画的是 AST：要给一个看不见的东西画简图，而且一画“自我表征”就和 HOT 撞车。</li>
+    <li>五张统一画风，盲测时 AI 只能看内容，结果更有说服力。</li>
+  </ul></div>
+  <p class="uses">相关：<a href="#f-6g_1_hot">6g_1_hot.txt</a><a href="#f-6g_2_ast">6g_2_ast.txt</a><a href="#f-6g_3_iit">6g_3_iit.txt</a><a href="#f-6g_4_pp">6g_4_pp.txt</a><a href="#f-6g_5_orchor">6g_5_orchor.txt</a><a href="#f-blind_test">blind_test.txt</a><a href="#f-gen_image">gen_image.py</a></p>
+</section>
+
+<!-- 10/23 -->
+<section class="exp" id="ls">
+  <div class="meta"><span class="num">10/23 客座</span><span class="chip code na">出勤码 未记录</span><span class="chip">江斌教授</span><span class="chip">3–5 人一组</span><span class="chip">材料：练习手册 PDF（Canvas Files）+ 线稿教程</span></div>
+  <h2>机器没体验过美，也能认出美吗？<span class="en">Living Structure + AI: Four Hands-On Exercises</span></h2>
+  <p class="what">江斌教授的“活的结构”理论认为，美可以用结构来量：子结构越多、层次越深，越“有生命”。小组用四种方法给一对建筑打分，再讨论：机器没体验过美，能不能认出美。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <p>每组拿到一对建筑照片，用四种方法比较哪个“更有生命、更完整”，组内每人负责一种：</p>
+      <ul>
+        <li><b>L-score</b>：把建筑画成从简到繁的分级线稿，数每级的子结构（封闭区域），L = S × H。S 是各级子结构数之和，H 是级数；相邻两级的数目比要在 2 到 6 之间。</li>
+        <li><b>B-score</b>：Beautimeter，按 15 条性质打分。</li>
+        <li><b>3M VAS</b>：视线热力图。账号用课上给的共享账号，这里不放。</li>
+        <li><b>MOST</b>：凭直觉选“哪个更像一个完整的自己”，再去问 AI。</li>
+      </ul></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>各自方法的结果</li>
+        <li>组内讨论：机器没体验过美，能认出美吗</li>
+        <li>派人上台汇报</li>
+      </ul></div>
+  </div>
+  <details class="mine" open><summary>我们组的 L-score（第 7 组，仅供参考）</summary><div class="in">
+    <p>A 美国国家档案馆（新古典，Pope，1935） vs B 汉弗莱大楼（粗野主义，Breuer，1977）。</p>
+    <div class="tbl"><table>
+      <tr><th></th><th>各级子结构数</th><th class="n">S</th><th class="n">H</th><th class="n">L</th></tr>
+      <tr><td>A 档案馆</td><td class="mono">3 → 14 → 58 → 129 → 280 → 675</td><td class="n">1159</td><td class="n">6</td><td class="n">6954</td></tr>
+      <tr><td>B 汉弗莱</td><td class="mono">5 → 11 → 56 → 280 → 1016</td><td class="n">1368</td><td class="n">5</td><td class="n">6840</td></tr>
+    </table></div>
+    <p>几乎打平。B 的 S 有 89% 来自 180 个一模一样的窗洞；A 靠多一层细部，赢在 H。口径一换排名就翻：去掉装饰，A 只剩 2420；S 只算最后一级，A 4050、B 5080。所以 L-score 数的是结构，哪些结构算数，是人先定好的。</p>
+  </div></details>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>画线稿前先定死规则：只画照片里看得到的主立面；每级只加下一层确实看得到的构件；最后一级包含所有细节。两栋楼用同一套规则，数字才能比。</li>
+    <li>子结构别手数，用 <a href="#f-count">count.py</a>，它还会出一张叠色图方便核对。</li>
+    <li>课上 GPT 出图连不上的话，教程允许手工画、手工改。</li>
+  </ul></div>
+  <p class="uses">相关：<a href="#f-count">count.py</a><a href="#f-extract_pair">extract_pair.py</a></p>
+</section>
+
+<section id="tips" class="exp">
+  <p class="sec-title">通用的坑</p>
+  <ol>
+    <li><b>新开对话、先关记忆</b>，记下模型名称和版本。多数 slide 都要求。</li>
+    <li><b>盲测用中性文件名</b>（A.png、piece.png）。文件名会泄题。</li>
+    <li><b>出图提示词写死三件事</b>：图里允许出现哪几个词、箭头朝哪边、只用哪几种颜色。模型最常错的就是文字和箭头方向。</li>
+    <li><b>要当场记的数据当场记</b>：猜测、用时、看见没看见。事后补不了，也别让 AI 补。</li>
+    <li><b>写明禁止用 AI 的部分自己写</b>，比如 ④ 的 Task 3。</li>
+    <li><b>Session code 当场记</b>，写进当次交付件。</li>
+  </ol>
+</section>
+
+<section id="code" class="exp">
+  <p class="sec-title">代码和提示词</p>
+  <p class="small">都能直接复制或下载。Python 3 即可运行；出图需要你自己的 OpenAI API key，放在环境变量里，不要写进代码。</p>
+  <div class="files">
+<!--FILES-->
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <p>最后更新 {{UPDATED}}。来源：课程 slide、Canvas Files 和公告、课上网页、我自己的实验记录。</p>
+  <p>有错或者有漏掉的实验，群里说一声。代码也在 <a href="https://github.com/ChangXiang-SCU/aiaa5050">GitHub</a>。</p>
+</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'),tm;
+  function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove('show')},1400)}
+  function text(id){var el=document.querySelector('#'+id+' pre code');return el?el.textContent:''}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.copy){
+      var t=text(b.dataset.copy);
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){say('已复制')},fallback)}else{fallback()}
+      function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');say('已复制')}catch(_){say('复制失败，请手动选中')}document.body.removeChild(ta)}
+    }
+    if(b.dataset.dl){
+      var blob=new Blob([text(b.dataset.dl)],{type:'text/plain;charset=utf-8'});
+      var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=b.dataset.name;document.body.appendChild(a);a.click();
+      setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+    }
+  });
+  // 跳到某个文件时自动展开代码
+  function openTarget(){var h=location.hash.slice(1);if(h&&h.indexOf('f-')===0){var d=document.querySelector('#'+h+' details');if(d)d.open=true}}
+  window.addEventListener('hashchange',openTarget);openTarget();
+  // 导航高亮
+  var bar=document.querySelector('nav.top .wrap');var links=[].slice.call(document.querySelectorAll('nav.top a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(a){a.classList.remove('on')});var a=map[en.target.id];if(a){a.classList.add('on');var r=a.getBoundingClientRect(),n=bar.getBoundingClientRect();if(r.left<n.left||r.right>n.right){bar.scrollLeft+=(r.left-n.left)-(n.width-r.width)/2}}}})},{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
