@@ -24,8 +24,12 @@ def threshold(n, p=0.25, alpha=0.05):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        sys.exit("用法：python binom_p.py 答对题数 总题数 [机会水平]，例如 python binom_p.py 7 40")
     k, n = int(sys.argv[1]), int(sys.argv[2])
     p = float(sys.argv[3]) if len(sys.argv) > 3 else 0.25
+    if not (0 <= k <= n and 0 < p < 1):
+        sys.exit("要求 0 <= 答对题数 <= 总题数，机会水平在 0 和 1 之间")
     print(f"答对 {k}/{n} = {k / n:.1%}，机会水平 {p:.0%}")
     print(f"单侧 p = {p_upper(k, n, p):.3f}")
     print(f"{n} 题里至少答对 {threshold(n, p)} 题才 p < 0.05")

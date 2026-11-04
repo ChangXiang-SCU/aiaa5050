@@ -15,10 +15,12 @@ import sys
 import urllib.error
 import urllib.request
 
-API = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1") + "/images/generations"
+API = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/") + "/images/generations"
 
 
 def main():
+    if len(sys.argv) < 4:
+        sys.exit("用法：python gen_image.py prompt.txt out.png 1536x1024 [模型]")
     prompt_file, out, size = sys.argv[1], sys.argv[2], sys.argv[3]
     model = sys.argv[4] if len(sys.argv) > 4 else "gpt-image-2"
     key = os.environ.get("OPENAI_API_KEY", "").strip()

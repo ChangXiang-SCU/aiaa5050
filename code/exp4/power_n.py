@@ -34,7 +34,11 @@ def n_exact(p0, p1, alpha=0.05, power=0.8, n_max=500):
 if __name__ == "__main__":
     p0 = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     p1 = float(sys.argv[2]) if len(sys.argv) > 2 else 0.65
+    if not 0 < p0 < p1 < 1:
+        sys.exit("要求 0 < p0 < p1 < 1，例如 python power_n.py 0.5 0.65")
     n, k = n_exact(p0, p1)
+    if n is None:
+        sys.exit("n 到 500 场都不够，差距太小")
     print(f"检出 {p1:.0%} vs {p0:.0%}（单侧 alpha=0.05，power=0.8）")
     print(f"正态近似：每个条件约 {n_normal(p0, p1)} 场")
     print(f"精确二项：每个条件 {n} 场，其中 >= {k} 场被判成人才算显著")
