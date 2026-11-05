@@ -144,7 +144,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
 </head>
 <body>
 <nav class="top" aria-label="目录"><div class="wrap">
-  <a href="#basics">须知</a><a href="#overview">一览</a><a href="#codes">出勤码</a><a href="#e1">①</a><a href="#e2">②</a><a href="#e3">③</a><a href="#e4">④</a><a href="#e4b">④B</a><a href="#m06">模块 06</a><a href="#e6b">⑥B</a><a href="#e6d">⑥D</a><a href="#e6g">⑥G</a><a href="#ls">10/23</a><a href="#tips">通用的坑</a><a href="#code">代码</a>
+  <a href="#basics">须知</a><a href="#overview">一览</a><a href="#codes">出勤码</a><a href="#e1">①</a><a href="#e2">②</a><a href="#e3">③</a><a href="#e4">④</a><a href="#e4b">④B</a><a href="#m06">模块 06</a><a href="#e6b">⑥B</a><a href="#e6d">⑥D</a><a href="#e6g">⑥G</a><a href="#ls">10/23</a><a href="#e8a">⑧A</a><a href="#tips">通用的坑</a><a href="#code">代码</a>
 </div></nav>
 
 <main class="wrap">
@@ -178,6 +178,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
     <a class="ov" href="#e6d"><span class="badge">⑥D</span><span><span class="t">找错字</span><span class="s">限时找出文章里的错字，和 AI 比谁找得全、找得快</span><span class="s2">模块 06 · 网页 4 段 · 人 vs AI</span></span></a>
     <a class="ov" href="#e6g"><span class="badge">⑥G</span><span><span class="t">让另外五家理论被看见</span><span class="s">把另外五个意识理论各画成一张图，打乱后让 AI 盲猜</span><span class="s2">模块 06 · 40 分钟 · 五张图 + 盲测</span></span></a>
     <a class="ov" href="#ls"><span class="badge">10/23</span><span><span class="t">Living Structure + AI</span><span class="s">小组用四种方法给一对建筑的“美”打分，讨论机器能不能认出美</span><span class="s2">江斌教授客座 · 3–5 人小组 · 四种方法</span></span></a>
+    <a class="ov" href="#e8a"><span class="badge">⑧A</span><span><span class="t">下一个词，谁猜得准</span><span class="s">6 句话各缺最后一个词，你和 AI 各猜一次，再让 AI 说你的词有多“意外”</span><span class="s2">模块 08 · 20 分钟 · 个人 · 先自己填</span></span></a>
   </div>
 </section>
 
@@ -193,6 +194,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
     <tr><td>模块 06</td><td><a href="#e6d">⑥D 找错字</a></td><td class="n"><span class="small">未记录</span></td></tr>
     <tr><td>模块 06</td><td><a href="#e6g">⑥G 让另外五家理论被看见</a></td><td class="n"><b>93000000000</b><br><span class="small">待核对</span></td></tr>
     <tr><td>10/23</td><td><a href="#ls">Living Structure + AI</a></td><td class="n"><b>0603</b></td></tr>
+    <tr><td>模块 08</td><td><a href="#e8a">⑧A 下一个词，谁猜得准</a></td><td class="n"><b>1054</b></td></tr>
   </table></div>
   <p class="small">标了“未确认 / 待核对 / 未记录”的，谁记得准确的码，群里说一声我更新。</p>
 </section>
@@ -520,6 +522,40 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:14px;color
     <li>课上 GPT 出图连不上的话，教程允许手工画、手工改。</li>
   </ul></div>
   <p class="uses">相关：<a href="#f-count">count.py</a><a href="#f-extract_pair">extract_pair.py</a></p>
+</section>
+
+<!-- ⑧A -->
+<section class="exp" id="e8a">
+  <div class="meta"><span class="num">Experiment ⑧A</span><span class="chip code">出勤码 1054</span><span class="chip">模块 08 理解大模型</span><span class="chip">20 分钟</span><span class="chip">个人</span><span class="chip">任一大模型</span></div>
+  <h2>下一个词，谁猜得准<span class="en">Guess the Next Word: Who Gets It Right?</span></h2>
+  <p class="what">大模型就是一个词一个词往下猜。6 句话各缺最后一个词，你和 AI 各猜一次，再让 AI 说你的词在它那里有多“意外”。</p>
+  <div class="cols">
+    <div class="card"><h3>要做什么</h3>
+      <ol>
+        <li><b>你先填</b>（0–4 分钟）：每句 10 秒写下你的词。不许查、不许问。</li>
+        <li><b>问 AI</b>（4–9 分钟）：新开对话，贴提示词 1 和 6 句话。你的词是它的第一名吗？在前三里吗？</li>
+        <li><b>意外程度</b>（9–15 分钟）：同一个对话贴提示词 2，报上你的 6 个词，让它给出概率和 1–10 的意外分。</li>
+        <li><b>自创玩法</b>（15–20 分钟）：换对象、换规则、换模型都行，比如用方言、网络流行语或古诗出题。</li>
+      </ol>
+      <p class="small">6 句话：① 床前明月光，疑是地上__ ② 下雨了，她赶紧跑回去收__ ③ 他打开冰箱，拿出一瓶冰__ ④ 我从小到大最讨厌吃的蔬菜是__ ⑤ 早上一睁眼，我发现枕头边上趴着一只__ ⑥ 他端起杯子，把咖啡一口气倒进了__</p></div>
+    <div class="card"><h3>交什么</h3>
+      <ul class="check">
+        <li>你的 6 个词</li>
+        <li>AI 每句的第一名和概率</li>
+        <li>你的词是它第一名的有几句</li>
+        <li>它打的“意外程度”最高的一句</li>
+        <li>自创玩法：改了什么，结果怎样</li>
+        <li>原始记录：所有对话截图或导出，不要改</li>
+      </ul>
+      <p class="small">另记 session code、模型名称和版本；开新对话前先关掉 AI 的记忆。</p></div>
+  </div>
+  <div class="pit"><h3>坑</h3><ul>
+    <li>先自己写完 6 个词再问 AI。先看了它的答案，就测不出你和它谁猜得准了。</li>
+    <li>提示词 2 要贴在同一个对话里，它才记得自己刚才给过的概率。</li>
+    <li>AI 报的“概率”是它嘴上说的数，不是模型内部真正给这个词的概率，两者可能差很多。</li>
+  </ul></div>
+  <p class="small">想一想：第 1 句人人一样，第 5 句五花八门，差别从哪来？训练就是一遍遍降低“意外”，它从哪一句学到的最多？</p>
+  <p class="uses">相关：<a href="#f-8a_prompts">8a_prompts.txt</a></p>
 </section>
 
 <section id="tips" class="exp">

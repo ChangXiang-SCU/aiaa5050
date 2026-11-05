@@ -1,0 +1,28 @@
+⑧A 下一个词，谁猜得准：课上 slide 的 6 句话和两条提示词（中英）。
+用法：先自己把 6 个词写完。再新开对话（先关记忆），贴提示词 1 和 6 句话；
+然后在同一个对话里贴提示词 2，把 ___ 换成你自己的词。
+
+== 提示词 1 ==
+下面每句话都缺最后一个词，对每一句，给出你认为最可能的 3 个词，以及你给每个词的概率（百分比），只输出表格。
+
+1 床前明月光，疑是地上___
+2 下雨了，她赶紧跑回去收___
+3 他打开冰箱，拿出一瓶冰___
+4 我从小到大最讨厌吃的蔬菜是___
+5 早上一睁眼，我发现枕头边上趴着一只___
+6 他端起杯子，把咖啡一口气倒进了___
+
+== 提示词 2（同一个对话） ==
+我填的是：1 ___ 2 ___ 3 ___ 4 ___ 5 ___ 6 ___，对每一句，我的词在你那里大概是多大概率？再打一个"意外程度"1-10，只输出表格。
+
+== English ==
+Prompt 1: Each sentence below is missing its last word. For each sentence, give the 3 words you think most likely and the probability you give each one (as a percentage). Output only a table.
+
+1 Twinkle, twinkle, little ___
+2 It rained, so she ran to bring in the ___
+3 From the fridge he took a cold ___
+4 The vegetable I hate most is ___
+5 Next to my pillow lay a ___
+6 He poured his coffee into the ___
+
+Prompt 2 (same chat): My words were: 1 ___ 2 ___ 3 ___ 4 ___ 5 ___ 6 ___. For each sentence, roughly what probability would my word have for you? Also give a surprise score from 1 to 10. Output only a table.

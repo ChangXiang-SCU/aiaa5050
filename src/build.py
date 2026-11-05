@@ -29,6 +29,7 @@ FILES = [
     ("prompts/blind_test.txt", "② ⑥G", "AI 盲测的提问模板。"),
     ("lscore/count.py", "10/23", "数线稿里的子结构（封闭区域），出叠色图核对。"),
     ("lscore/extract_pair.py", "10/23", "从练习手册 PDF 里抠出一组对比图。"),
+    ("prompts/8a_prompts.txt", "⑧A", "6 句话和两条提示词（中英），先自己填完再用。"),
 ]
 
 IMAGES = {
