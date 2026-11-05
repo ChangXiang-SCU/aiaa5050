@@ -1,0 +1,5 @@
+# 只有 lscore/ 两个脚本需要第三方库，其余脚本只用 Python 标准库（Python 3.8+）。
+numpy
+scipy
+pillow
+pymupdf

@@ -52,6 +52,10 @@ def count(path, thr=170, gap=1, min_frac=2e-5, save=True, crop=None):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.exit("用法：python count.py level1.png level2.png ...")
     for p in sys.argv[1:]:
+        if os.path.splitext(p)[0].endswith("_count"):
+            continue  # 跳过上一次生成的叠色图，方便直接用 *.png
         r = {f"g{g}": count(p, gap=g, save=(g == 1)) for g in (0, 1, 2)}
         print(os.path.basename(p), r, flush=True)
